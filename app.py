@@ -24,7 +24,7 @@ class Task(db.Model):
     minimum_nights =  db.Column(db.Integer)
     number_of_reviews = db.Column(db.Integer)
     last_review	= db.Column(db.DateTime)
-    reviews_per_month = db.Column(db.Integer)
+    reviews_per_month = db.Column(db.Numeric)
     calculated_host_listings_count = db.Column(db.Integer)
     availability_365 = db.Column(db.Integer)
     name= db.Column(db.String)
