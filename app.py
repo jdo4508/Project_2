@@ -13,7 +13,20 @@ db = SQLAlchemy(app)
  
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    host_id	= db.Column(db.Integer)
+    host_name = db.Column(db.String)
+    neighbourhood_group	= db.Column(db.String)
+    neighbourhood = db.Column(db.Integer)
+    latitude =  db.Column(db.Double)
+    longitude =	 db.Column(db.Double)
+    room_type = db.Column(db.String)
+    price = db.Column(db.Double)
+    minimum_nights =  db.Column(db.Integer)
+    number_of_reviews = db.Column(db.Integer)
+    last_review	reviews_per_month =
+    calculated_host_listings_count =
+    availability_365 = db.Column(db.Integer)
+    name= db.Column(db.String)
 
 
 
