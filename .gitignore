@@ -130,3 +130,5 @@ dmypy.json
 
 
 app.sqlite
+
+mongopath.py

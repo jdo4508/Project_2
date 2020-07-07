@@ -5,17 +5,15 @@ from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
 
+from os import environ
+
 
 # create instance of Flask app
 app = Flask(__name__)
 
 
-
-
-cluster = MongoClient("mongodb+srv://johnswittenborn:project2@project2-76gn3.mongodb.net/<dbname>?retryWrites=true&w=majority")
-
-db = cluster["project2db"]
-listings = db["project2"]
+app.config['MONGO_URI'] = environ.get('MONGODB_URI') or 'mongodb://localhost:27017/project2'
+mongo = PyMongo(app)
 
 
 # create route that renders index.html template
@@ -32,14 +30,13 @@ def datagrabber():
      return jsonify(Onelistings)
     
 
-@app.route("/getall")
-def getter():
+@app.route("/listings")
+def listings():
+    listings = mongo.db.listings.find()
     data = []
-    for mylist in listings.find():
+    for mylist in listings:
         item = {
             "id": mylist["id"],
-            "host_id": mylist["host_id"],
-            "host_name": mylist["host_name"],
             "host_id": mylist["host_id"],
             "host_name": mylist["host_name"],
             "neighbourhood": mylist["neighbourhood"],
