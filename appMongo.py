@@ -5,14 +5,12 @@ from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
 
-
-#mongo application: mongodb+srv://johnswittenborn:project2@project2-76gn3.mongodb.net/test
-#python: mongodb+srv://johnswittenborn:project2@project2-76gn3.mongodb.net/<dbname>?retryWrites=true&w=majority
+import mongopath
 
 # create instance of Flask app
 app = Flask(__name__)
 
-cluster = MongoClient("mongodb+srv://johnswittenborn:project2@project2-76gn3.mongodb.net/<dbname>?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://johnswittenborn:######@project2-76gn3.mongodb.net/<dbname>?retryWrites=true&w=majority")
 
 db = cluster["project2db"]
 listings = db["project2"]
