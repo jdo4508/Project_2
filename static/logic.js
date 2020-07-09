@@ -13,12 +13,12 @@ d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visua
       var geoJSONListingsFeatures = [];  
 
       response.forEach(function(listings, i) {
-        var info = "<span style='color:" + colorScale(listings.name) + "'><b>" +
+        var info = "<span style='color:" + colorScale(listings.room_type) + "'><b>" +
                     listings.name + "</b></span><br/>" +
                     "room type: <b>" + listings.room_type + "</b>" +  "</b></span><br/>" +
                     "price: <b>" + "$" + listings.price + "</b>" + "</b></span><br/>";
 
-
+       
 
         var geoJSONFeatures = {
                       "type": "Feature",
@@ -43,7 +43,7 @@ d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visua
     // Creating map object
     var makeListingMap = function(geoJSONListingsFeatures) {
 
-    var myMap = L.map("map", {
+    var myMap = L.map("map-container", {
       center: [35.54, -82.55],
       zoom: 12
     });
@@ -54,7 +54,7 @@ d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visua
       tileSize: 512,
       maxZoom: 18,
       zoomOffset: -1,
-      id: "mapbox/streets-v11",
+      id: 'mapbox/streets-v11',
       accessToken: API_KEY
     }).addTo(myMap);
 
@@ -63,9 +63,9 @@ d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visua
           return {
               color:       '#000',
               opacity:     0,
-              radius:      feature.properties.radius,
+              radius:      (feature.properties.capacity = 3),
               fillColor:   feature.properties.color,
-              fillOpacity: 0.3
+              fillOpacity: 0.5
           };
       },
       onEachFeature: function (feature, layer) {
@@ -76,4 +76,35 @@ d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visua
       }
 
   }).addTo(myMap);
-}
+
+  // Add legend with d3
+  var legendWidth  = 110,
+  legendHeight = 80;
+
+var legend = d3.select('#map-legend').append('svg')
+  .attr('width', legendWidth)
+  .attr('height', legendHeight);
+
+var legends = legend.selectAll(".legend")
+  .data(colorScale.domain())
+.enter().append("g")
+  .attr("class", "legend")
+  .attr("transform", function(d, i) { return "translate(0," + i * 20
+   + ")"; });
+
+// draw legend colored rectangles
+legends.append("rect")
+  .attr("x", legendWidth - 18)
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", colorScale);
+
+// draw legend text
+legends.append("text")
+  .attr("x", legendWidth - 20)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .style("text-anchor", "end")
+  .text(function(d) { return d.toLowerCase(); })
+};
+
