@@ -14,7 +14,7 @@ var SVG = d3.select("#my_scatter")
 
 
 //Read the data
-d3.json("../data/listings-1.json", function(data) {
+d3.json("static/data/listings-1.json", function(data) {
 
   // Add X axis
   var x = d3.scaleLinear()

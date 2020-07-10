@@ -13,7 +13,7 @@ var svg2 = d3.select("#my_histo")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // get the data
-d3.json("/data/listings-1.json", function(data) {
+d3.json("static/data/listings-1.json", function(data) {
 
   // X axis: scale and draw:
   var x = d3.scaleLinear()

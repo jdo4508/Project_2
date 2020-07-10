@@ -24,8 +24,7 @@ def index():
 
 @app.route("/datagrab")
 def datagrabber():
-     Onelistings = listings.find_one()
-     print(Onelistings)
+     Onelistings = mongo.db.listings.find_one()
      Onelistings.pop("_id")
      return jsonify(Onelistings)
     

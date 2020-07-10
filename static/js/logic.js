@@ -1,4 +1,3 @@
-
 var colorScale;
 
 d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visualisations/listings.csv", function(response) {
@@ -107,4 +106,3 @@ legends.append("text")
   .style("text-anchor", "end")
   .text(function(d) { return d.toLowerCase(); })
 };
-

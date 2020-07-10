@@ -12,7 +12,7 @@ var svg3 = d3.select("#my_violin")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Read the data and compute summary statistics for each specie
-d3.json("/data/listings-1.json", function(data) {
+d3.json("static/data/listings-1.json", function(data) {
 
   // Build and Show the Y scale
   var y = d3.scaleLinear()
