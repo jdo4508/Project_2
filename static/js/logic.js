@@ -3,8 +3,8 @@ var colorScale;
 
 
 
-d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visualisations/listings.csv", function(response) {
-  //d3.json("/listings", function(response) {
+//d3.csv("http://data.insideairbnb.com/united-states/nc/asheville/2020-05-29/visualisations/listings.csv", function(response) {
+d3.json("/listings", function(response) {
 //d3.json("/listings").then((response) => {
    //console.log(response);
 

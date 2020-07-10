@@ -31,9 +31,9 @@ def datagrabber():
 
 @app.route("/listings")
 def listings():
-    listings = mongo.db.listings.find()
+    bnblistings = mongo.db.listings.find()
     data = []
-    for mylist in listings:
+    for mylist in bnblistings:
         item = {
             "id": mylist["id"],
             "host_id": mylist["host_id"],
